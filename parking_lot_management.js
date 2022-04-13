@@ -18,7 +18,7 @@ class Spot{
 }
 
 class ParkingLotManager{
-    constructor(vehicleTypes){
+    constructor(){
         this.spots = [];
         this.vehicles = new Map();
     }
@@ -84,3 +84,7 @@ class HeavyVehicle extends Vehicle{
         this.vehicleSize = 4;
     }
 }
+
+const parkingLogManager = new ParkingLotManager()
+parkingLogManager.addSpot(Car, ["Maruti","Honda"])
+console.log(parkingLogManager)
