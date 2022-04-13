@@ -57,3 +57,30 @@ class ParkingLotManager{
         }
     }
 }
+
+class Vehicle{
+    constructor(id){
+        this.licenseId = id;
+    }
+}
+
+class Bike extends Vehicle{
+    constructor(id){
+        super(id)
+            this.vehicleSize = 1;
+    }
+}
+
+class Car extends Vehicle{
+    constructor(id){
+        super(id)
+        this.vehicleSize = 2;
+    }
+}
+
+class HeavyVehicle extends Vehicle{
+    constructor(id){
+        super(id);
+        this.vehicleSize = 4;
+    }
+}
