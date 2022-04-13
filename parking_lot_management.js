@@ -1,6 +1,6 @@
 class Spot{
     constructor(data){
-        this.data = data;
+        Object.assign(this, data)
     }
     fill(vehicle){
         this.vehicle = vehicle;
@@ -37,7 +37,7 @@ class ParkingLotManager{
             console.log(`There is already a vehicle parked with id ${vehicle.licenseId}`)
             return;
          }
-         const spot = this.spots.find((spot)=> (vehicle instanceof spot.vehicleType) && this.isSpotFree())
+         const spot = this.spots.find((spot)=> ((vehicle instanceof spot.vehicleType) && (spot.isSpotFree())))
          if(spot){
              this.vehicles.set(vehicle.licenseId, spot);
              console.log(`Vehicle is parked at ${spot.id}`)
@@ -50,8 +50,8 @@ class ParkingLotManager{
     removeVehicle(vehicle){
         const spot = this.vehicles.get(vehicle.licenseId);
         if(spot){
-            this.release();
-            this.vehicles.delete(vehicle.licenseId);
+            // this.release();
+           return this.vehicles.delete(vehicle.licenseId);
         }else{
             console.log("There is no vehicle with this Id")
         }
@@ -87,4 +87,17 @@ class HeavyVehicle extends Vehicle{
 
 const parkingLogManager = new ParkingLotManager()
 parkingLogManager.addSpot(Car, ["Maruti","Honda"])
+parkingLogManager.addSpot(Bike, ["Yamaha","Pulsor"])
+
+const car1 = new Car("Maruti")
+const car2 = new Car("Ford")
+
+parkingLogManager.placeVehicle(car1)
+parkingLogManager.placeVehicle(car2)
+
+const bike1 = new Bike("Platina")
+
+parkingLogManager.placeVehicle(bike1) 
+
+console.log(parkingLogManager.removeVehicle("Ford"))
 console.log(parkingLogManager)
